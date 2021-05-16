@@ -6,7 +6,7 @@ const yourFriend = document.querySelector('.yourFriend');
 const copyCode = document.getElementById('copy');
 
 async function view() {
-    socket = io('http://localhost:3000');
+    socket = io();
     pc = new RTCPeerConnection();
 
     const { location } = window;
@@ -32,12 +32,10 @@ async function view() {
         endCall.classList.remove('hidden');
     };
     socket.on('answer', async (data) => {
-        console.log('Answer');
         await pc.setRemoteDescription(data);
     });
 
     socket.on('offer', async (offer, friend) => {
-        console.log('New Offer', friend);
         await pc.setRemoteDescription(offer);
         const answer = await pc.createAnswer();
         await pc.setLocalDescription(answer);

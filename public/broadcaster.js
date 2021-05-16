@@ -7,7 +7,7 @@ const copyCode = document.getElementById('copy');
 
 async function broadcast() {
     pc = new RTCPeerConnection();
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect();
     const { location } = window;
     const params = new URLSearchParams(location.search);
 
