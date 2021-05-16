@@ -13,15 +13,17 @@ html(lang="en")
             div(class="mb-16 text-center")
                 h1(class=`${h1} text-center mb-2`) Room: #{room}
                 button#copy(class=`${btn} text-center`) Copy code
+            div(class="text-center")
+                button#end_call(class=`${btn} hidden`) End Call
             div(class="flex md:space-x-10 items-center justify-center flex-wrap")
-                div.broadcaster(class="h-96 w-96 ")
-                    h3(class=`${h3} text-center`) You
-                    video#main(playsinline autoplay)
                 div.viewer(class="h-96 w-96 hidden")  
                     h3(class=`${h3} text-center yourFriend`) 
                     video#remote_video(playsinline autoplay) 
-            div(class="text-center")
-                button#end_call(class=`${btn} hidden`) End Call
+                div.broadcaster(class="h-96 w-96 ")
+                    h3(class=`${h3} text-center`) You
+                    video#main(playsinline autoplay)
+                
+            
             
         if viewer 
             script(src="/viewer.js")
