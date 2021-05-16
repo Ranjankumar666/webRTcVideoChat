@@ -1,0 +1,10 @@
+extends base.pug 
+
+block header 
+    title Login 
+
+block body  
+    form(action="/login", method="post", class="grid space-y-2")  
+        input(type="text", name="name", placeholder="Enter name", class=`${input}`)
+        input(type="text", name="email", placeholder="Enter email", class=`${input}`)
+        button(type="submit", class=`${btn}`) Join  

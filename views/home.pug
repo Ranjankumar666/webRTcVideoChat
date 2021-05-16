@@ -1,0 +1,20 @@
+extends base.pug
+
+block header 
+    title Welcome 
+
+block body 
+    
+        div(class="h-max space-y-3")
+            h1(class=`${h1}`) Welcome #{user.name}
+            div(class="space-x-2")
+                input#name(type="text", name="name", placeholder="Enter name", class=`${input}`, value=`${user.name}`, disabled)
+                input#email(type="text", name="email", placeholder="Enter email", class=`${input}`, value=`${user.email}`, disabled)
+            
+            .buttons(class="mt-5 space-x-2")
+                a#broadcaster(class=`${btn}`, href=`/chat?type=broadcaster&name=${user.name}&email=${user.email}`) Make a Room 
+                btn#viewer(class=`${btn}`) Join a Room
+            
+            form(class='hidden flex flex-col flex-wrap space-y-2').inputs
+                input#room_code(type="text", name="room_code", placeholder="Enter room code", class=`${input}`)
+                button(type="submit", class=`${btn}`) Join

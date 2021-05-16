@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous")
+        link(href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet")
+        title Chat Room 
+    body
+        include variables.pug
+        div
+            div(class="mb-16 text-center")
+                h1(class=`${h1} text-center mb-2`) Room: #{room}
+                button#copy(class=`${btn} text-center`) Copy code
+            div(class="flex md:space-x-10 items-center justify-center flex-wrap")
+                div.broadcaster(class="h-96 w-96 ")
+                    h3(class=`${h3} text-center`) You
+                    video#main(playsinline autoplay)
+                div.viewer(class="h-96 w-96 hidden")  
+                    h3(class=`${h3} text-center yourFriend`) 
+                    video#remote_video(playsinline autoplay) 
+            div(class="text-center")
+                button#end_call(class=`${btn} hidden`) End Call
+            
+        if viewer 
+            script(src="/viewer.js")
+        else 
+            script(src="/broadcaster.js")
+        //- script(src="/index.js") 
