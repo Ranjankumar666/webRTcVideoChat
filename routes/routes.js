@@ -7,7 +7,6 @@ const isVerified = (req, res, next) => {
         res.redirect('/login');
         return;
     }
-    console.log('Request Verified');
     next();
 };
 

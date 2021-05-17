@@ -4,10 +4,23 @@ const remoteVideo = document.getElementById('remote_video');
 const remote = document.querySelector('.viewer');
 const yourFriend = document.querySelector('.yourFriend');
 const copyCode = document.getElementById('copy');
+/**
+ * @type {RTCConfiguration}
+ */
+const config = {
+    iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        {
+            url: 'turn:relay.backups.cz',
+            credential: 'webrtc',
+            username: 'webrtc',
+        },
+    ],
+};
 
 async function view() {
     socket = io();
-    pc = new RTCPeerConnection();
+    pc = new RTCPeerConnection(config);
 
     const { location } = window;
     const params = new URLSearchParams(location.search);
@@ -62,6 +75,7 @@ view().catch((err) => {
 
 endCall.onclick = (e) => {
     socket.emit('endCall', room);
+    pc.close();
     window.location = window.location.origin;
 };
 
